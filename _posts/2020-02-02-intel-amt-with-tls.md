@@ -1,5 +1,5 @@
 ---
-layout: post
+#layout: posts
 title: Configuring Intel AMT with TLS
 categories: [IntelAMT]
 ---

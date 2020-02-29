@@ -1,5 +1,5 @@
 ---
-layout: post
+#layout: posts
 title: Setting up Docker in a home lab
 categories: [Homelab, Docker]
 ---
