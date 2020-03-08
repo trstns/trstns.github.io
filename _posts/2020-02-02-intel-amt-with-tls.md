@@ -4,9 +4,13 @@ title: Configuring Intel AMT with TLS
 categories: [IntelAMT]
 #header:
 #  image: /images/intel-amt-with-tls/IntelAMT.png
+header:
+  overlay_image: /images/intel-amt-with-tls/header.jpg
+  caption: "Photo by [Slejven Djurakovic](https://unsplash.com/@slavudin) on Unsplash"
 toc: true
+teaser: /images/intel-amt-with-tls/IntelChipset.jpg
+excerpt: How I set up Intel AMT with TLS without using an enterprise certificate authority.
 ---
-![](/images/intel-amt-with-tls/IntelAMT.png)
 
 Intel AMT (Active Management Technology) is a very powerful tool built into most enterprise workstations that allows you to perform out of band management of your workstations.  This is especially useful when your workstations are located at another site or away from technical staff.  It allows your support staff to control the console and power on/off/cycle remotely, as long as the workstation has power and an active network connection.
 
@@ -205,6 +209,7 @@ ACUConfig.exe /Output File <logfile> MaintainViaRCSOnly <server FQDN> <profile n
 
 Now that we have AMT configured on our devices, we need a way to access and control them.  The best free software that I have found for controlling AMT devices is MeshCommander and MeshCentral which are available from http://www.meshcommander.com.  These are both developed by engineers at Intel and give you full control over AMT functionality. Personally we us MeshCommander as it is the quickest and easiest to setup, and we don’t need additional functionality that MeshCentral offers.  There is some good documentation on the meshcommander site, so I won’t go into how to set these up.
 
-## Powershell control
+## Coming soon
 
-## Troubleshooting
+- Powershell control
+- Troubleshooting
