@@ -2,7 +2,12 @@
 #layout: posts
 title: Configuring Intel AMT with TLS
 categories: [IntelAMT]
+#header:
+#  image: /images/intel-amt-with-tls/IntelAMT.png
+toc: true
 ---
+![](/images/intel-amt-with-tls/IntelAMT.png)
+
 Intel AMT (Active Management Technology) is a very powerful tool built into most enterprise workstations that allows you to perform out of band management of your workstations.  This is especially useful when your workstations are located at another site or away from technical staff.  It allows your support staff to control the console and power on/off/cycle remotely, as long as the workstation has power and an active network connection.
 
 In this post I will detail how we have configured Intel AMT in our environment.

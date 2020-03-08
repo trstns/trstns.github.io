@@ -2,6 +2,9 @@
 #layout: posts
 title: Setting up Docker in a home lab
 categories: [Homelab, Docker]
+header:
+  image: /images/docker-homelab/mainimage.jpg
+toc: true
 ---
 Being an Windows admin I'm new to docker and containerisation, but I'm interested in getting my head around it all.  To accomplish this I have set up a VM at home to host docker containers.  This is what I've done.
 
