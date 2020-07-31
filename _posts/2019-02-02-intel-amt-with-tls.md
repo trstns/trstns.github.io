@@ -8,6 +8,7 @@ header:
   overlay_image: /images/intel-amt-with-tls/header.jpg
   caption: "Photo by [Slejven Djurakovic](https://unsplash.com/@slavudin) on Unsplash"
 toc: true
+toc_sticky: true
 teaser: /images/intel-amt-with-tls/IntelChipset.jpg
 excerpt: How I set up Intel AMT with TLS without using an enterprise certificate authority.
 ---
