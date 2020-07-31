@@ -36,7 +36,7 @@ name                     : "Tristan Schoonens"
 description              : "A place to document things."
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : "betacase/betacase.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : "trstns/trstns.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
@@ -123,9 +123,9 @@ analytics:
 
 # Site Author
 author:
-  name             : "Tristan S"
+  name             : "Tristan"
   avatar           : /images/bio.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Systems Engineer."
+  bio              : "Systems Engineer"
   location         : "Brisbane, Australia"
   email            :
   links:
@@ -143,7 +143,7 @@ author:
       url: "https://www.linkedin.com/in/tristan-schoonens-19aa23a4/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/betacase"
+      url: "https://github.com/trstns"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
