@@ -1,6 +1,6 @@
 ---
 #layout: posts
-title: Using a Shelly 1 as a garage door opener with home assistant
+title: Using a Shelly 1 as a garage door opener with Home Assistant
 categories: [Home Assistant, Home Automation]
 header:
   image: /images/shelly-garage-door-opener/mainimage.jpg
@@ -28,7 +28,7 @@ First we need to connect the Shelly 1 to the garage door opener.  This can be be
 
 This is a rough diagram of how I wired it up:
 
-![Shelly Wiring Diagram](/images/shelly-garage-door-opener/shelly1_wiring.PNG)
+![Shelly Wiring Diagram](/images/shelly-garage-door-opener/shelly1_wiring.png)
 
 The **I** and **O** terminals are connected to the relay so one should be connected to the terminal on your garage door opener that will trigger the door to open, and the other should be connected to ground.
 
@@ -92,4 +92,4 @@ Now you need to restart Home Assistant to load the new device.
 
 Once Home Assistant has restarted, you can create a new entities card in Lovelace to allow you to control your garage door.
 
-![Home Assistant Garage door control](/images/shelly-garage-door-opener/ha-garagedoor-entity.PNG)
+![Home Assistant Garage door control](/images/shelly-garage-door-opener/ha-garagedoor-entity.png)
