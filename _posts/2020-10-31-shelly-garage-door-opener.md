@@ -78,7 +78,7 @@ cover:
 
 - **command_topic** - This is the MQTT topic for controlling the Shelly
 - **state_topic** - This is the topic to read the state of the reed switch connectd to the Shelly
-- **retain** - This tells the MQTT broker whether to keep the message after is was initially received.  It is important to set this to false in this case because if your shelly restarts or reconnects to the network it will reconnect to the MQTT broker which will send the last retained command which will open your garage door.
+- **retain** - This tells the MQTT broker whether to keep the message after it was initially received.  It is important to set this to false in this case because if your shelly restarts or reconnects to the network it will reconnect to the MQTT broker which will send the last retained command which will open your garage door.
 - **payload_\*** - These are the payloads to send to the command topic.  They are all the same in my case as my garage door is controlled by a single button
 - **state_\*** - These are the states we expect to read from the state_topic
 
