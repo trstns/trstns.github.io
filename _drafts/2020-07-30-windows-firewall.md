@@ -10,13 +10,13 @@ toc_sticky: true
 excerpt: I've been working on restricting the windows firewall on servers and workstations to only the required services.  This post will covers some lessons I have learned and useful information I have found.
 ---
 
-For a while i've been wanting to properly configure the firewalls on our Windows servers and workstations to only allow the traffic that was really needed.  Part of the reason for taking so long is that the Windows firewall can be a bit daunting and difficult to understand, and also I didn't want to break any devices or services that were in production.
+For a while i've been wanting to properly configure the firewalls on our Windows servers and workstations to only allow the traffic that was really needed.  Part of the reason for taking so long is that the Windows firewall can be a bit daunting and difficult to understand, and there isn't a lot of information available.  I also didn't want to break any devices or services that were in production.
 
-Here i'm going to write about how I went about properly configuring the firewall on our devices without breaking anything in the process and also what I learned while doing it.
+Here i'm going to write about how I went about properly configuring the windows firewall on our devices without breaking anything in the process, and also what I learned while doing it.
 
 # Goals
 
-What do we want to gain by properly managing the firewall on our hosts?  The main advantage for us is to limit the exposure of our workstations and servers to help reduce or slow down malicious users or network worms.
+What did we want to gain by properly managing the firewall on our hosts?  The main advantage is to limit the exposure of our workstations and servers to help reduce or slow down malicious users or network worms.  
 
 This is usually obvious with servers, but a lot of the time the firewall on workstations is neglected or even turned off.  There is often a lot of trust placed in the local network.  Unfortunately we need to start taking the zero-trust approach, and carefully manage what users and devices have access to. 
 You might think that a border firewall is good enough, and they are definitely important, but what happens when someone or something gets into the network? If we use the host firewall to stop hosts from being able to communicate with each other, we will make it much harder for a malicious person or worm to move around the network.
@@ -36,7 +36,7 @@ Useful points:
 
 ## Use group policy objects
 
-By using group policy objects, we can centralise the configuration of our firewall rules.  It also allows us to use organisational units to layer firewall rules and most importantly, it allows us to disable local rules and only apply the rules we specify. Disabling local rules is important as the default firewall configuration in Windows is very open and a lot of software pokes holes in the firewall when it is not required.
+By using group policy objects, we can centralise the configuration of our firewall rules.  It also allows us to use organisational units to layer firewall rules and most importantly, it allows us to disable local rules and only apply the rules we specify. Disabling local rules is important as the default firewall configuration in Windows is very open and a lot of software pokes holes in the firewall even though it isn't required.
 
 Layering firewall rules also makes things a lot more manageable.  Take this orginisational unit structure as an example:
 
@@ -53,7 +53,7 @@ Layering firewall rules also makes things a lot more manageable.  Take this orgi
     ↳ Graphic Designers
 ```
 
-At the Workstations level, we can apply general rules that should be on all workstations, for example, rules that allow  management systems to communicate with the hosts as well as remote access tools used by systems administrators and desktop support staff.  
+At the Workstations level, we can apply general rules that should be on all workstations, for example, rules that allow management systems to communicate with the hosts as well as remote access tools used by systems administrators and desktop support staff.  
 
 From there we can apply more specific rules to lab and staff workstations and further down the tree.  That way we aren't opening a port on a graphic designers computer that is only required by the developers.  This leads us on to the next point.
 
@@ -71,42 +71,37 @@ Watch Jessica Payne's presentation above for more reasons why it isn't a great i
 
 # Implementation plan
 
-So you are ready to tackle this, but where should you start? 
+Here is the process I went through when implementing group policy based firewall control.
 
-The main thing to remember with the implementation is that you can work piece by piece, area by area and test along the way. You don't need to have everything done in one go.
+The main thing to remember with the implementation is that you can work piece by piece, area by area and test along the way. You don't need to have everything done in one go.  I started with the servers first, and worked on a single server/service at a time.
 
-## Identifying services
+## Identifying services and ports
 
-You should start by identifying services that are needed on your network.  
+The first step was to identify services that are needed on our network.  
 
 I started with the tools that we use to manage servers and workstations:
 
 - Remote Desktop
 - File and printer sharing
-- Monitoring server
+- Monitoring services
 - etc
 
-I found these the easiest and they generally apply to all workstations or servers.
+I found these the easiest and they generally apply to all workstations or servers.  It was also useful to check the documentation for the software we are running to see which ports they recommend you have open on the firewall.
 
-Then I went through our servers before looking into the workstations.
+To make sure that nothing was missed, I configured the firewall logging on our servers and workstations to log successful packets and increase the log file size.  I could then look through the logs to see what traffic was currently being allowed in and identify the legitimate and required traffic.
 
-## Gathering information
-
-Now we need to gather some data so that we know which ruled we need to create and so we don't accidentally miss something.  
-
-I started by configuring the firewall policy at the top level of the org unit tree to increase the log file size and log successful packets. 
-You should also check the documentation for the software you are running to see which ports they recommend you have open on the firewall.   
-
-I then created some PowerShell scripts to process the log files and show me the data I needed, which I cross checked with the documentation as well as sites like the [speedguide.net ports database](https://www.speedguide.net/ports.php).
+To make understanding the firewall logs a little easier, I created some PowerShell scripts to process the log files and summarise the data, which I cross-checked with the documentation as well as sites like the [speedguide.net ports database](https://www.speedguide.net/ports.php).
 
 
 ## Creating rules
 
-Using the data we gathered we can start creating rules.
+Using the data I gathered I could can start creating rules.
 
 ## Testing and experimenting
 
+For some critical services I wanted to be able to test my new firewall rules before deploying them into production.  For these cases, I would create a temporary virtual machine in a test OU where I could apply the rules and validate that everything worked as expected.  The same approach was used for workstation firewall rules as well. 
 
+For non-critical services (where users wouldn't notice a small outage) I was able to apply the rules to the production server, validate that they worked as expected and if not, quickly roll back the change.  
 
 # Terminology and concepts
 
