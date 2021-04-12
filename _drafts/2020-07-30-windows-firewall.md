@@ -126,7 +126,4 @@ For servers you can generally leave rules assigned to all profiles.  For worksta
 
 
 
-
-
-
 <!-- ## Connection security rules -->
