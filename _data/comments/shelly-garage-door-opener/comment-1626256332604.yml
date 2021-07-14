@@ -1,0 +1,7 @@
+_id: 2980ee20-e489-11eb-a4c8-293a970d414e
+message: "Thanks. I’m home assistant the state of the garage door cover kind of shows the input from the reed switch, but if you wanted you could make another sensor that showed the state of the MQTT topic “shellies/shelly-garagedoor/input/0\" (in my example) directly. \r\n\r\nI hope that helps."
+name: Tristan
+email: 3af3be705fa09c1b272ff5ac2cb0a410
+url: ''
+hidden: ''
+date: '2021-07-14T09:52:12.600Z'
