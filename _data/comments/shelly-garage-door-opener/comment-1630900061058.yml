@@ -1,0 +1,12 @@
+_id: 2f48f760-0ec5-11ec-b9b0-4526cd33b56d
+message: >-
+  Hi Mags,  I don't have any Shelly devices using the Shelly integration in Home
+  Assistant any more but from memory the device in Home Assistant should show
+  the state of the input/switch of the Shelly device.  I've had a little look at
+  the code for the integration on GitHub and it looks like it should show a
+  binary sensor for the input, but I'm not able to test it to make sure.
+name: Tristan
+email: 3af3be705fa09c1b272ff5ac2cb0a410
+url: 'https://trstn.com'
+hidden: ''
+date: '2021-09-06T03:47:41.055Z'
