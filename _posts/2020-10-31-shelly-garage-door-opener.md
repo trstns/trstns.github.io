@@ -3,14 +3,16 @@
 title: Using a Shelly 1 as a garage door opener with Home Assistant
 categories: [Home Assistant, Home Automation]
 header:
-  image: /images/shelly-garage-door-opener/mainimage.jpg
+  overlay_image: /images/shelly-garage-door-opener/mainimage.jpg
   caption: "Photo credit: [**Kevin Wolf**](https://unsplash.com/@kwlf)"
 toc: true
 toc_sticky: true
 excerpt: How I use a Shelly 1 as a garage door opener with Home Assistant using the stock Shelly firmware.
 ---
 
-I just bought a bunch of Shelly devices to use with Home Assistant and wanted to use one to control my garage door.  I've seen a few guides but they all seem to tell you to flash the device with Tasmota or ESPhome which seemed unnecessary seeing as I don't have any other Tasmota/ESPhome devices (yet).  I also haven't used MQTT yet so this was a goot opportunity to give that a go.
+**UPDATE: As of June 2022 Home Assistant is changing the way MQTT covers are defined in the yaml configuration files.  I've updated this page to reflect the new way to configure MQTT covers.  If you have followed this guide before September 2022, you may need to update your configuration so that it doesn't break.**
+
+I just bought a bunch of Shelly devices to use with Home Assistant and wanted to use one to control my garage door.  I've seen a few guides but they all seem to tell you to flash the device with Tasmota or ESPhome which seemed unnecessary seeing as I don't have any other Tasmota/ESPhome devices (yet).  I also haven't used MQTT yet so this was a good opportunity to give that a go.
 
 # Prerequisites
 
@@ -47,7 +49,7 @@ Open the Shelly's web interface.  You'll need to find the IP address from your r
 On the Settings page:
 
 - Configure the **Power on default mode** to **Off**
-- Configure the **Button type** to **Detatched Switch**
+- Configure the **Button type** to **Detached Switch**
 
 On the Internet & Security page, open the **Advanced - Developer settings** section.  You will need to configure the settings for your MQTT broker (Username, password and server address).  I also set the custom MQTT prefix to **Shelly-GarageDoor** to make the MQTT topics easier to read.
 
@@ -60,24 +62,24 @@ That's all that is required for the Shelly configuration.
 In Home Assistant we are going to use an MQTT cover to define and control the garage door so we need to add the following snippet to our configuration:
 
 ```
-cover:
-  - platform: mqtt
-    name: "Garage Door"
-    command_topic: "shellies/shelly-garagedoor/relay/0/command"
-    state_topic: "shellies/shelly-garagedoor/input/0"
-    qos: 0
-    retain: false
-    payload_open: "on"
-    payload_close: "on"
-    payload_stop: "on"
-    state_open: "0"
-    state_opening: "0"
-    state_closed: "1"
-    state_closing: "0"
+mqtt:
+  cover:
+    - name: "Garage Door"
+      command_topic: "shellies/shelly-garagedoor/relay/0/command"
+      state_topic: "shellies/shelly-garagedoor/input/0"
+      qos: 0
+      retain: false
+      payload_open: "on"
+      payload_close: "on"
+      payload_stop: "on"
+      state_open: "0"
+      state_opening: "0"
+      state_closed: "1"
+      state_closing: "0"
 ```
 
 - **command_topic** - This is the MQTT topic for controlling the Shelly
-- **state_topic** - This is the topic to read the state of the reed switch connectd to the Shelly
+- **state_topic** - This is the topic to read the state of the reed switch connected to the Shelly
 - **retain** - This tells the MQTT broker whether to keep the message after it was initially received.  It is important to set this to false in this case because if your shelly restarts or reconnects to the network it will reconnect to the MQTT broker which will send the last retained command which will open your garage door.
 - **payload_\*** - These are the payloads to send to the command topic.  They are all the same in my case as my garage door is controlled by a single button
 - **state_\*** - These are the states we expect to read from the state_topic
