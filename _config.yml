@@ -74,8 +74,8 @@ comments:
     #      format           : # "iso8601" #(default), "timestamp-seconds", "timestamp-milliseconds"
     endpoint               : https://trstnstaticman.herokuapp.com/v2/entry/ # URL of your own deployment with trailing slash, will fallback to the public instance
 staticman:
-  branch                 : "master"
-  endpoint               : https://trstnstaticman.herokuapp.com/v2/entry/ # URL of your own deployment with trailing slash, will fallback to the public instance
+  branch                 : #"master"
+  endpoint               : #https://trstnstaticman.herokuapp.com/v2/entry/ # URL of your own deployment with trailing slash, will fallback to the public instance
 reCaptcha:
   siteKey                :
   secret                 :
