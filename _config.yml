@@ -297,6 +297,9 @@ compress_html:
   ignore:
     envs: development
 
+relative_links:
+  enabled:     false
+  collections: false
 
 # Defaults
 defaults:
@@ -311,3 +314,5 @@ defaults:
       comments: true
       share: false
       related: true
+      toc: true
+      toc_sticky: true
